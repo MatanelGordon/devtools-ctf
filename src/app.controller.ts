@@ -1,12 +1,27 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpException } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+	constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+	@Get()
+	getHello() {
+		return this.appService.getHello();
+	}
+
+	@Get('/long')
+	async getLongHello(): Promise<string> {
+		await new Promise<void>(res =>
+			setTimeout(() => {
+				res();
+			}, 4000)
+		);
+		return this.appService.getHello();
+	}
+
+	@Get('/error')
+	getError() {
+		throw new HttpException('I AM A TEA POT', 417);
+	}
 }

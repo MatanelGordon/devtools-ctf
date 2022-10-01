@@ -13,6 +13,7 @@ specifiers:
   '@types/supertest': ^2.0.11
   '@typescript-eslint/eslint-plugin': ^5.0.0
   '@typescript-eslint/parser': ^5.0.0
+  chalk: ^4
   eslint: ^8.0.1
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
@@ -28,11 +29,13 @@ specifiers:
   ts-node: ^10.0.0
   tsconfig-paths: 4.1.0
   typescript: ^4.7.4
+  webpack: ^5.74.0
 
 dependencies:
   '@nestjs/common': 9.1.2_yzt46al3aifnexifjjdb4dxxja
   '@nestjs/core': 9.1.2_zzb753o6ov5n3wrhompfrkwa7u
   '@nestjs/platform-express': 9.1.2_umdjpi6fqr4wvw73r3mhthbyle
+  chalk: 4.1.2
   reflect-metadata: 0.1.13
   rimraf: 3.0.2
   rxjs: 7.5.7
@@ -55,10 +58,11 @@ devDependencies:
   source-map-support: 0.5.21
   supertest: 6.2.4
   ts-jest: 28.0.8_fztrhi54teek7om3xmnfwid3mq
-  ts-loader: 9.4.1_typescript@4.8.4
+  ts-loader: 9.4.1_qqxisngxjbp7lstdk7boexbu3e
   ts-node: 10.9.1_qj2pceye7x36wjy4gpgxephk74
   tsconfig-paths: 4.1.0
   typescript: 4.8.4
+  webpack: 5.74.0
 
 packages:
 
@@ -4565,7 +4569,7 @@ packages:
       yargs-parser: 21.1.1
     dev: true
 
-  /ts-loader/9.4.1_typescript@4.8.4:
+  /ts-loader/9.4.1_qqxisngxjbp7lstdk7boexbu3e:
     resolution: {integrity: sha512-384TYAqGs70rn9F0VBnh6BPTfhga7yFNdC5gXbQpDrBj9/KsT4iRkGqKXhziofHOlE2j6YEaiTYVGKKvPhGWvw==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -4577,6 +4581,7 @@ packages:
       micromatch: 4.0.5
       semver: 7.3.7
       typescript: 4.8.4
+      webpack: 5.74.0
     dev: true
 
   /ts-node/10.9.1_qj2pceye7x36wjy4gpgxephk74:

@@ -1,11 +1,10 @@
-import { Get } from "@nestjs/common";
+import { Get, Request, Response } from '@nestjs/common';
 
-export abstract class LevelController{
-    abstract getLevel(): string;
+export abstract class LevelController {
+	abstract getLevel(): string;
 
-    @Get()
-    getLevelWithToken(){
-        const path = this.getLevel();
-        
-    }
+	@Get()
+	getLevelWithToken(@Request() req, @Response() res) {
+		const path = this.getLevel();
+	}
 }

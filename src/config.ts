@@ -1,5 +1,3 @@
-import { envWithDefault } from "./utils"
+import { envWithDefault } from './utils';
 
-export default {
-
-} as const
+export default {} as const;
