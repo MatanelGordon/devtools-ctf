@@ -11,12 +11,10 @@ export class MainFilter implements ExceptionFilter {
 	catch(exception: unknown, host: ArgumentsHost): void {
 		// In certain situations `httpAdapter` might not be available in the
 		// constructor method, thus we should resolve it here.
-		console.error('ERROReD in MainFilter');
-
 		const ctx = host.switchToHttp();
 		const req = ctx.getRequest();
 		const res = ctx.getResponse();
-
+		console.log(exception);
 		const httpStatus =
 			exception instanceof HttpException
 				? exception.getStatus()

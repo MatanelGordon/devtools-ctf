@@ -1,4 +1,5 @@
-import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import * as path from 'path';
+import { NestFactory } from '@nestjs/core';
 import {
 	FastifyAdapter,
 	NestFastifyApplication,
@@ -14,6 +15,14 @@ async function bootstrap() {
 	);
 
 	app.useGlobalFilters(new MainFilter());
+
+	app.setViewEngine({
+		engine: {
+			pug: require('pug'),
+		},
+		templates: path.join(__dirname),
+	});
+
 	app.useGlobalInterceptors(new LoggerInterceptor());
 	console.log('Listening on port 3000');
 	await app.listen(3000);
