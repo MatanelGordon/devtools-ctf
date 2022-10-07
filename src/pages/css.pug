@@ -1,0 +1,12 @@
+extends ./core/layout
+
+block head
+    style.
+        body::after{
+            content: "#{self.flag}";
+            display: none;
+        }
+
+
+block body
+    h1 Where is the flag now?
