@@ -20,7 +20,10 @@ async function bootstrap() {
 		engine: {
 			pug: require('pug'),
 		},
-		templates: path.join(__dirname),
+		templates: path.join(__dirname, 'pages'),
+		options: {
+			self: true,
+		},
 	});
 
 	app.useGlobalInterceptors(new LoggerInterceptor());
