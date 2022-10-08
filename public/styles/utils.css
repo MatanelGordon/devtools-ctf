@@ -1,0 +1,11 @@
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+.full-size{
+    height: 100vh;
+    width: 100vw;
+}

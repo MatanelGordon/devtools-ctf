@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { BasicController, CssController } from './controllers';
+import { BasicController, InlineStyleController } from './controllers';
 
 @Module({
-	controllers: [CssController, BasicController],
+	controllers: [InlineStyleController, BasicController],
 })
 export class LevelsModule {}

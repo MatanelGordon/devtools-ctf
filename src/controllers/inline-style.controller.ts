@@ -1,12 +1,12 @@
 import { Controller, Get, Render } from '@nestjs/common';
 import config from '~/config';
 
-const levelConfig = config.levels.basic;
+const levelConfig = config.levels.inlineStyle;
 
 @Controller(levelConfig.url)
-export class BasicController {
+export class InlineStyleController {
 	@Get()
-	@Render('basic.hbs')
+	@Render('inline-style.hbs')
 	render() {
 		return { flag: levelConfig.flag };
 	}

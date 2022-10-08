@@ -21,7 +21,7 @@ export class AppController {
 	}
 
 	@Get('/html')
-	@Render('test.pug')
+	@Render('test.hbs')
 	async getHTML() {
 		return { flag: 'matanel' };
 	}

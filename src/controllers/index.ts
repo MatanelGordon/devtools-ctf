@@ -1,2 +1,2 @@
 export { BasicController } from './basic.controller';
-export { CssController } from './css.controller';
+export { InlineStyleController } from './inline-style.controller';
