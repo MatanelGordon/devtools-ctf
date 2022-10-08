@@ -1,1 +1,1 @@
-export const createFlag = (content: string) => `flag@${content}`;
+export const createFlag = (content: string) => `flag{${content}}`;
