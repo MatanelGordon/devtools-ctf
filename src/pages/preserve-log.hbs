@@ -11,6 +11,7 @@
       background-color: #7CB518;
       color: #f0f0f0;
       padding: .6rem 1rem;
+      margin-block: 1rem;
       font-size: 1.2rem;
       border-radius: 1rem;
       cursor: pointer;
@@ -19,15 +20,20 @@
       box-sizing: border-box;
     }
 
-    #btn:is(:focus, :hover) {
-      outline: 1px #333 solid;
+    #btn:hover{
+      background-color: #5C9518;
     }
+
+    #btn:focus{
+      outline: 2px solid blue;
+    }
+
   </style>
   <title>Loading...</title>
 </head>
 <body class="center full-size">
-
-<button id="btn">Click Here to reveal the flag</button>
+<h1 class="gradient-text gradient1">Want to reveal the flag?</h1>
+<button id="btn">Click here</button>
 <script defer>
   const _0xd3f99d = _0x3dcb;
   (

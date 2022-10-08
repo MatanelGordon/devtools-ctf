@@ -1,2 +1,12 @@
 @import './reset.css';
 @import './utils.css';
+
+body{
+    background-color: #303030;
+    font-family: system-ui, serif;
+    color: #e7e7e7;
+}
+
+.gradient1{
+    background: linear-gradient(0deg, #e65c00, #f9d423);
+}
