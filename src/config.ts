@@ -22,6 +22,10 @@ export default {
 			url: 'level-ae4d020f',
 			flag: createFlag('CssIsTricky'),
 		}),
+		preserveLog: createLevelConfig('PRESERVE_LOG', {
+			url: 'level-ce5ed9ff',
+			flag: createFlag('Y0uG0tM3'),
+		}),
 	},
 	server: {
 		port: envWithDefault<number>('PORT', 3000),

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/public/styles/index.css">
+  <style>
+    #btn {
+      background-color: #7CB518;
+      color: #f0f0f0;
+      padding: .6rem 1rem;
+      font-size: 1.2rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    #btn:is(:focus, :hover) {
+      outline: 1px #333 solid;
+    }
+  </style>
+  <title>Loading...</title>
+</head>
+<body class="center full-size">
+
+<button id="btn">Click Here to reveal the flag</button>
+<script defer>
+  const _0xd3f99d = _0x3dcb;
+  (
+    function(_0x2ef814, _0x1ba144) {
+      const _0x51d204 = _0x3dcb, _0x2d91fa = _0x2ef814();
+      while (!![]) {
+        try {
+          const _0x72de9f = -parseInt(_0x51d204(0x1d6)) / 0x1 + parseInt(_0x51d204(0x1e2)) / 0x2 +
+                            parseInt(_0x51d204(0x1e1)) / 0x3 + -parseInt(_0x51d204(0x1dd)) / 0x4 +
+                            -parseInt(_0x51d204(0x1d9)) / 0x5 + parseInt(_0x51d204(0x1d0)) / 0x6 * (
+                              parseInt(_0x51d204(0x1d2)) / 0x7
+                            ) + -parseInt(_0x51d204(0x1d4)) / 0x8 * (
+                              parseInt(_0x51d204(0x1df)) / 0x9
+                            );
+          if (_0x72de9f === _0x1ba144) break; else _0x2d91fa["push"](_0x2d91fa["shift"]());
+        } catch (_0x3bf2f0) {
+          _0x2d91fa["push"](_0x2d91fa["shift"]());
+        }
+      }
+    }(_0x2bd9, 0x29037)
+  );
+
+  function _0x2bd9() {
+    const _0x3cd33c = [
+      "log",
+      "1004142tExhyI",
+      "132460TCtyyG",
+      "textContent",
+      "41802OYWYpq",
+      "Good\x20luck!",
+      "14VyrIKA",
+      "location",
+      "149024dkUmbp",
+      "fetching\x20completed!",
+      "97973oSSuYB",
+      "GET",
+      "style",
+      "25865DqMYzm",
+      "btn",
+      "onclick",
+      "Fetching...",
+      "202404yNCSbL",
+      "disabled",
+      "45xRhJol"
+    ];
+    _0x2bd9 = function() {return _0x3cd33c;};
+    return _0x2bd9();
+  }
+
+  const btn = document["getElementById"](_0xd3f99d(0x1da));
+  btn[_0xd3f99d(0x1db)] = async () => {
+    const _0x24d366 = _0xd3f99d;
+    btn["textContent"] = _0x24d366(0x1dc), await sleep(0x3e8);
+    try {
+      const _0x5a5c4d = await fetch('{{flagUrl}}', { "method": _0x24d366(0x1d7) });
+      if (!_0x5a5c4d["ok"]) throw new Error("failed\x20fetching\x20-\x20", _0x5a5c4d);
+      btn[_0x24d366(0x1e3)] = _0x24d366(0x1d1), console[_0x24d366(0x1e0)](_0x24d366(0x1d5)), setTimeout(() => {
+        const _0x222e49 = _0x24d366;
+        window[_0x222e49(0x1d3)]["reload"]();
+      }, 0x1f4);
+    } catch (_0x5bcc7a) {
+      btn[_0x24d366(0x1e3)] = "Fetch\x20failed!", btn[_0x24d366(0x1d8)]["backgroundColor"] =
+        "red", btn[_0x24d366(0x1de)] = !![];
+    }
+  };
+
+  function _0x3dcb(_0x8e71db, _0x1ed924) {
+    const _0x2bd935 = _0x2bd9();
+    return _0x3dcb = function(_0x3dcb0e, _0x321924) {
+      _0x3dcb0e = _0x3dcb0e - 0x1d0;
+      let _0x5c08f4 = _0x2bd935[_0x3dcb0e];
+      return _0x5c08f4;
+    }, _0x3dcb(_0x8e71db, _0x1ed924);
+  }
+
+  function sleep(_0x1939c2) {return new Promise(_0x192a6d => setTimeout(_0x192a6d, _0x1939c2));}
+</script>
+</body>
+</html>

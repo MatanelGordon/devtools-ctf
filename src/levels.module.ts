@@ -1,7 +1,15 @@
 import { Module } from '@nestjs/common';
-import { BasicController, InlineStyleController } from './controllers';
+import {
+	BasicController,
+	InlineStyleController,
+	PreserveLogController,
+} from './controllers';
 
 @Module({
-	controllers: [InlineStyleController, BasicController],
+	controllers: [
+		BasicController,
+		InlineStyleController,
+		PreserveLogController,
+	],
 })
 export class LevelsModule {}
