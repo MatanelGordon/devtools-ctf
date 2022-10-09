@@ -8,22 +8,30 @@ import { AppModule } from './app.module';
 import { LoggerInterceptor } from './interceptors';
 import { MainFilter } from './filters';
 import config from '~/config';
-import handlebars = require('handlebars');
+import { createHandlebarsInstance } from '~/logic/createHandlebarsInstance';
+
+const PAGES_PATH = path.join(__dirname, 'pages');
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestFastifyApplication>(
 		AppModule,
 		new FastifyAdapter()
 	);
+
 	app.useGlobalInterceptors(new LoggerInterceptor());
 
 	app.useGlobalFilters(new MainFilter());
+
+	const handlebars = await createHandlebarsInstance({
+		partialsDir: 'core',
+		rootDir: PAGES_PATH,
+	});
 
 	app.setViewEngine({
 		engine: {
 			handlebars,
 		},
-		templates: path.join(__dirname, 'pages'),
+		templates: PAGES_PATH,
 	});
 
 	await app.listen(config.server.port);
