@@ -1,15 +1,25 @@
+import * as path from 'path';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LevelsModule } from './levels.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import * as path from 'path';
+import { SourcesBasicController } from './controllers/sources-basic.controller';
+import { BasicController } from '~/controllers/basic.controller';
+import { InlineStyleController } from '~/controllers/inline-style.controller';
+import { PreserveLogController } from '~/controllers/preserve-log.controller';
+import { NetworkBasicController } from '~/controllers/network-basic.controller';
 
 @Module({
-	controllers: [AppController],
+	controllers: [
+		AppController,
+		BasicController,
+		InlineStyleController,
+		PreserveLogController,
+		NetworkBasicController,
+		SourcesBasicController,
+	],
 	providers: [AppService],
 	imports: [
-		LevelsModule,
 		ServeStaticModule.forRoot({
 			serveRoot: '/public',
 			rootPath: path.join(__dirname, '..', 'public'),

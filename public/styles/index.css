@@ -7,6 +7,10 @@ body{
     color: #e7e7e7;
 }
 
-.gradient1{
+.gradient-1{
     background: linear-gradient(0deg, #e65c00, #f9d423);
+}
+
+.gradient-2{
+    background: linear-gradient(0deg, #d38312, #a83279);;
 }

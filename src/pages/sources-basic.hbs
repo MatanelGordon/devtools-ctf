@@ -6,33 +6,10 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/public/styles/index.css">
-  <style>
-    body::after{
-      content: "{{flag}}";
-      display: none;
-    }
-
-    @keyframes rgb{
-      0%, 100%{
-        color: red;
-      }
-
-      33%{
-        color: blue
-      }
-
-      67%{
-        color: green
-      }
-    }
-
-    h1{
-      animation: infinite rgb ease-out 1s;
-    }
-  </style>
-  <title>Devtools CTF</title>
+  <link rel="stylesheet" href="{{cssFilePath}}">
+  <title>Document</title>
 </head>
 <body class="center full-size">
-<h1>Where is the flag now?</h1>
+  <h1>Why is My Background Red?</h1>
 </body>
 </html>

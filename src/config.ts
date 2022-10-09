@@ -26,6 +26,14 @@ export default {
 			url: 'level-ce5ed9ff',
 			flag: createFlag('Y0uG0tM3'),
 		}),
+		networkBasic: createLevelConfig('NETWORK_BASIC', {
+			url: 'level-99606d6a',
+			flag: createFlag('N3tW0rkB4S1CS'),
+		}),
+		sourcesBasic: createLevelConfig('SOURCES_BASIC', {
+			url: 'level-9ad478b3',
+			flag: createFlag('Y0ureAW1zardHarry'),
+		}),
 	},
 	server: {
 		port: envWithDefault<number>('PORT', 3000),
