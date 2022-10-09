@@ -1,4 +1,4 @@
-import { decrypt, encrypt } from "~/logic/aes";
+import { decrypt, encrypt } from '~/logic/aes';
 
 describe('aes testing', () => {
 	it('should decrypt the encryption', () => {
