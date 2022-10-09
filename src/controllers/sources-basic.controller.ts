@@ -1,11 +1,4 @@
-import {
-	Controller,
-	Get,
-	Header,
-	HttpCode,
-	HttpStatus,
-	Render,
-} from '@nestjs/common';
+import { Controller, Get, Header, Render } from '@nestjs/common';
 import config from '~/config';
 
 const levelConfig = config.levels.sourcesBasic;
