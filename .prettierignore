@@ -1,0 +1,7 @@
+# IntelliJ project files
+.idea
+*.iml
+
+#specific annoying file with obfuscated code
+src/pages/preserve-log.hbs
+
