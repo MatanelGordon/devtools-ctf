@@ -1,18 +1,7 @@
-import { createFlag, envWithDefault } from './utils';
+import { createLevelConfig, envWithDefault } from './utils/config';
+import { createFlag } from './logic/flagDecorator';
 
-const createLevelConfig = (
-	name: string,
-	defaults: { url: string; flag: string }
-) => {
-	const namePrefix = `${name.toUpperCase()}_LEVEL_`;
-
-	return {
-		url: envWithDefault(`${namePrefix}_URL`, defaults.url),
-		flag: envWithDefault(`${namePrefix}_FLAG`, defaults.flag),
-	};
-};
-
-export default {
+const config = {
 	levels: {
 		basic: createLevelConfig('BASIC', {
 			url: 'level-02eaf04d',
@@ -34,8 +23,21 @@ export default {
 			url: 'level-9ad478b3',
 			flag: createFlag('Y0ureAW1zardHarry'),
 		}),
+		localStorageBasic: createLevelConfig('LOCALSTORAGE_BASIC', {
+			url: 'level-c231787c',
+			flag: createFlag('L0calSt0rageIsAwesome'),
+		}),
 	},
 	server: {
-		port: envWithDefault<number>('PORT', 3000),
+		port: +envWithDefault<number>('PORT', 3000),
+		secretKey: envWithDefault('SECRET_KEY', 'SecretKeyIsGood!'),
+		initialVector: envWithDefault('KEY_INITIAL_VECTOR', 'secretInitialVec'),
 	},
 } as const;
+
+const key = config.server.secretKey;
+if (key.length !== 16) {
+	throw new Error('SECRET_KEY length must be 16 exactly');
+}
+
+export default config;

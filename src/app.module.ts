@@ -8,6 +8,7 @@ import { BasicController } from '~/controllers/basic.controller';
 import { InlineStyleController } from '~/controllers/inline-style.controller';
 import { PreserveLogController } from '~/controllers/preserve-log.controller';
 import { NetworkBasicController } from '~/controllers/network-basic.controller';
+import { LocalstorageBasicController } from '~/controllers/localstorage-basic.controller';
 
 @Module({
 	controllers: [
@@ -17,6 +18,7 @@ import { NetworkBasicController } from '~/controllers/network-basic.controller';
 		PreserveLogController,
 		NetworkBasicController,
 		SourcesBasicController,
+		LocalstorageBasicController,
 	],
 	providers: [AppService],
 	imports: [

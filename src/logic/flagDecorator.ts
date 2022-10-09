@@ -1,4 +1,4 @@
-import { removePadding } from '@utils/padding';
+import { removePadding } from '~/utils/padding';
 
 export type Flag = `flag{${string}}`;
 

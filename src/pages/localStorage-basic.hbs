@@ -4,10 +4,70 @@
   {{> headers}}
 </head>
 <body class="center full-size">
-<h1 class="gradient-text gradient-2">I fetched the flag for you.</h1>
-<span>You're welcome!</span>
-<script async>
-  fetch('{{flagUrl}}', { method: "GET" });
+<h1 class="gradient-text gradient-3">This value will be in your browser</h1>
+<span>even if you refresh the page.</span>
+
+<script defer>
+  function _0x4c79() {
+    const _0x235fc5 = [
+      "260TNutRu",
+      "localStorage",
+      '{{flag1}}',
+      '{{flag5}}',
+      "flag",
+      "910VneAZP",
+      "16767HAanfS",
+      "564768ykIBxC",
+      "2095100fWYrMC",
+      "820797JuOddY",
+      '{{flag2}}',
+      "372118oYhAom",
+      "9138BoaPud",
+      "localStorage\x20is\x20not\x20accessible",
+      "getItem",
+      "4YtcTse",
+      "3956824oxBjAx"
+    ];
+    _0x4c79 = function() {return _0x235fc5;};
+    return _0x4c79();
+  }
+
+  const _0x3aa9bb = _0x32be;
+
+  function _0x32be(_0x5b6197, _0x231360) {
+    const _0x4c79ec = _0x4c79();
+    return _0x32be = function(_0x32beaa, _0x16e12e) {
+      _0x32beaa = _0x32beaa - 0x85;
+      let _0x21e022 = _0x4c79ec[_0x32beaa];
+      return _0x21e022;
+    }, _0x32be(_0x5b6197, _0x231360);
+  }
+
+  (
+    function(_0xe0b575, _0x1898e5) {
+      const _0x18dcba = _0x32be, _0x57a8dd = _0xe0b575();
+      while (!![]) {
+        try {
+          const _0x548afb = parseInt(_0x18dcba(0x87)) / 0x1 + parseInt(_0x18dcba(0x8b)) / 0x2 +
+                            -parseInt(_0x18dcba(0x89)) / 0x3 * (
+                              -parseInt(_0x18dcba(0x8f)) / 0x4
+                            ) + -parseInt(_0x18dcba(0x88)) / 0x5 + parseInt(_0x18dcba(0x8c)) / 0x6 * (
+                              parseInt(_0x18dcba(0x85)) / 0x7
+                            ) + -parseInt(_0x18dcba(0x90)) / 0x8 + -parseInt(_0x18dcba(0x86)) / 0x9 * (
+                              -parseInt(_0x18dcba(0x91)) / 0xa
+                            );
+          if (_0x548afb === _0x1898e5) break; else _0x57a8dd["push"](_0x57a8dd["shift"]());
+        } catch (_0x2ef7ce) {
+          _0x57a8dd["push"](_0x57a8dd["shift"]());
+        }
+      }
+    }(_0x4c79, 0x5736f)
+  );
+  const a = _0x3aa9bb(0x93), b = _0x3aa9bb(0x8a), c = '{{flag3}}', d = '{{flag4}}', e = _0x3aa9bb(0x94),
+    key = _0x3aa9bb(0x95);
+  if (!window["localStorage"]) throw new Error(_0x3aa9bb(0x8d));
+  const flag = atob(a + b + c + d + e);
+  !window[_0x3aa9bb(0x92)][_0x3aa9bb(0x8e)](key) && window["localStorage"]["setItem"](key, flag);
 </script>
 </body>
 </html>

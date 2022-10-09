@@ -14,3 +14,7 @@ body{
 .gradient-2{
     background: linear-gradient(0deg, #d38312, #a83279);;
 }
+
+.gradient-3{
+    background: linear-gradient(to right, #f806b1, #66ff00);;
+}
