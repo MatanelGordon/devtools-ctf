@@ -3,32 +3,34 @@
 <head>
   {{> headers}}
   <style>
-    body::after{
+    @keyframes move-gradient {
+      from{
+        background-position-x: -425px;
+      }
+      to{
+        background-position-x: 0;
+      }
+    }
+
+    body::after {
       content: "{{flag}}";
-      display: none;
+      --color: black;
+      color: var(--color);
+      background: var(--color);
+      user-select: none;
+      font-size: 2rem;
+      pointer-events: none;
     }
 
-    @keyframes rgb{
-      0%, 100%{
-        color: red;
-      }
-
-      33%{
-        color: blue
-      }
-
-      67%{
-        color: green
-      }
-    }
-
-    h1{
-      animation: infinite rgb ease-out 1s;
+    h1 {
+      background: linear-gradient(to right, pink, cyan, limegreen) no-repeat center center;
+      background-size: 800px 800px;
+      animation: move-gradient infinite alternate-reverse 1.5s ease-out .3s;
     }
   </style>
   <title>Devtools CTF</title>
 </head>
 <body class="center full-size">
-<h1>Where is the flag now?</h1>
+<h1 class="gradient-text">Where is the flag now?</h1>
 </body>
 </html>

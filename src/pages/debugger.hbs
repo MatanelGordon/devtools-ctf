@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {{> headers}}
+  <script type="application/json" id="__DATA__">
+    {
+      "a":"{{flag1}}",
+      "b":"{{flag2}}",
+      "c":"{{flag3}}",
+      "d":"AlsfA3tEM",
+      "e":"4FCNRUM14J",
+      "cf":"0VJRBc0Al"
+    }
+  </script>
+  <style>
+    .debug-btn{
+      outline: none;
+      border:none;
+      box-sizing: border-box;
+      border-radius: 5px;
+      background: #4aad1d;
+      color: #efefef;
+      padding: .5rem 1.5rem;
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .debug-btn:hover{
+      background: #419b1a;
+    }
+
+    .debug-btn:active{
+      background: #327e16;
+    }
+  </style>
+</head>
+<body class="center full-size">
+<button class="debug-btn" id="debugBtn" onclick="debugProgram()">Debug</button>
+<script defer type="text/javascript" src="/public/scripts/debugger.js"></script>
+</body>
+</html>

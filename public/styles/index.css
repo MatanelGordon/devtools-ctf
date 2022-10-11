@@ -1,20 +1,24 @@
 @import './reset.css';
 @import './utils.css';
 
-body{
+body {
     background-color: #303030;
     font-family: system-ui, serif;
     color: #e7e7e7;
 }
 
-.gradient-1{
+.gradient-1 {
     background: linear-gradient(0deg, #e65c00, #f9d423);
 }
 
-.gradient-2{
+.gradient-2 {
     background: linear-gradient(0deg, #d38312, #a83279);;
 }
 
-.gradient-3{
+.gradient-3 {
+    background: linear-gradient(to right, #808080, #3fada8);
+}
+
+.gradient-4 {
     background: linear-gradient(to right, #f806b1, #66ff00);;
 }

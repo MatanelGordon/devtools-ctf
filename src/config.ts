@@ -27,6 +27,10 @@ const config = {
 			url: 'level-c231787c',
 			flag: createFlag('L0calSt0rageIsAwesome'),
 		}),
+		debugger: createLevelConfig('CONSOLE_LOG', {
+			url: 'level-b195d810',
+			flag: createFlag('D3BUGG3R_M4$T3R'),
+		}),
 	},
 	server: {
 		port: +envWithDefault<number>('PORT', 3000),
