@@ -2,7 +2,7 @@ import { Controller, Get, Header, Render } from '@nestjs/common';
 import config from '~/config';
 
 const levelConfig = config.levels.sourcesBasic;
-const cssFileName = 'flag-file.css';
+const cssFileName = 'styles.css';
 
 @Controller(levelConfig.url)
 export class SourcesBasicController {
