@@ -10,6 +10,7 @@ import { PreserveLogController } from '~/controllers/preserve-log.controller';
 import { NetworkBasicController } from '~/controllers/network-basic.controller';
 import { LocalstorageBasicController } from '~/controllers/localstorage-basic.controller';
 import { DebuggerController } from './controllers/debugger.controller';
+import { CookieBasicController } from './controllers/cookie-basic.controller';
 
 @Module({
 	controllers: [
@@ -21,6 +22,7 @@ import { DebuggerController } from './controllers/debugger.controller';
 		SourcesBasicController,
 		LocalstorageBasicController,
 		DebuggerController,
+		CookieBasicController,
 	],
 	providers: [AppService],
 	imports: [

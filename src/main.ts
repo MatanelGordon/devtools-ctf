@@ -4,6 +4,7 @@ import {
 	FastifyAdapter,
 	NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import fastifyCookie from '@fastify/cookie';
 import { AppModule } from './app.module';
 import { LoggerInterceptor } from './interceptors';
 import { MainFilter } from './filters';
@@ -17,6 +18,10 @@ async function bootstrap() {
 		AppModule,
 		new FastifyAdapter()
 	);
+
+	await app.register(fastifyCookie, {
+		secret: config.server.cookieSecret,
+	});
 
 	app.useGlobalInterceptors(new LoggerInterceptor());
 

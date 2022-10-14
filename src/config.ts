@@ -31,11 +31,16 @@ const config = {
 			url: 'level-b195d810',
 			flag: createFlag('D3BUGG3R_M4$T3R'),
 		}),
+		cookieBasic: createLevelConfig('COOKIES_BASIC', {
+			url: 'level-0d0b9a23',
+			flag: createFlag('C00CK13_M0NST3R'),
+		}),
 	},
 	server: {
 		port: +envWithDefault<number>('PORT', 3000),
 		secretKey: envWithDefault('SECRET_KEY', 'SecretKeyIsGood!'),
 		initialVector: envWithDefault('KEY_INITIAL_VECTOR', 'secretInitialVec'),
+		cookieSecret: envWithDefault('COOKIE_SECRET', 'matanel-made-this'),
 	},
 } as const;
 
