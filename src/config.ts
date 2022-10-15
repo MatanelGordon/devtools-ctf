@@ -35,6 +35,10 @@ const config = {
 			url: 'level-0d0b9a23',
 			flag: createFlag('C00CK13_M0NST3R'),
 		}),
+		indexedDbBasic: createLevelConfig('INDEXEDDB_BASIC', {
+			url: 'level-matmon',
+			flag: createFlag('M4TM0N_M4ST3R'),
+		}),
 	},
 	server: {
 		port: +envWithDefault<number>('PORT', 3000),
