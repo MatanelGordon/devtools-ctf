@@ -2,72 +2,571 @@
 <html lang="en">
 <head>
   {{> headers}}
-</head>
-<body class="center full-size">
-<h1 class="gradient-text gradient-3">I'm N0T g0iNg AnYwHeRe</h1>
-<span>even if you refresh the page.</span>
+  <style id="__checkbox-input-style">
+    .checkbox-round {
+      block-size: 28px;
+      aspect-ratio: 1;
+      position: relative;
+      margin-block: 10px;
+      background: #fcfff4;
+      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+      border-radius: 50px;
+      box-shadow: inset 0 1px 1px white, 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
 
-<script defer>
-  function _0x4c79() {
-    const _0x235fc5 = [
-      "260TNutRu",
-      "localStorage",
-      '{{flag1}}',
-      '{{flag5}}',
-      "flag",
-      "910VneAZP",
-      "16767HAanfS",
-      "564768ykIBxC",
-      "2095100fWYrMC",
-      "820797JuOddY",
-      '{{flag2}}',
-      "372118oYhAom",
-      "9138BoaPud",
-      "localStorage\x20is\x20not\x20accessible",
-      "getItem",
-      "4YtcTse",
-      "3956824oxBjAx"
-    ];
-    _0x4c79 = function() {return _0x235fc5;};
-    return _0x4c79();
+    .checkbox-round label {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      cursor: pointer;
+      background: linear-gradient(to bottom, #222222 0%, #45484d 100%);
+      border-radius: 50px;
+      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px white;
+    }
+
+    .checkbox-round label:after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      position: absolute;
+      top: 5px;
+      left: 4px;
+      border: 3px solid currentColor;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+
+    .checkbox-round label:hover::after {
+      opacity: 0.3;
+    }
+
+    .checkbox-round input[type=checkbox] {
+      visibility: hidden;
+    }
+
+    .checkbox-round input[type=checkbox]:checked + label:after {
+      opacity: 1;
+    }
+  </style>
+  <style id="__todo-item-style">
+    .todo-item__wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .todo-item__content {
+      font-size: 1.2rem;
+    }
+  </style>
+  <style>
+    #todosInput {
+      box-sizing: border-box;
+      border: 1px #ccc solid;
+      outline: none;
+      padding: 5px 10px;
+      border-radius: 10px;
+      margin-block-start: .5rem;
+    }
+
+    .todos-wrapper {
+      block-size: 200px;
+      overflow: hidden auto;
+      margin-block-start: 3rem;
+    }
+
+    todo-item[completed] {
+      color: greenyellow;
+    }
+
+    todo-item {
+      accent-color: #3fada8;
+    }
+  </style>
+</head>
+<body class="center full-size" style="padding-block-start: 30px;">
+<h1 class="gradient-text gradient-3">Todo</h1>
+<form action="" id="todosForm">
+  <input type="text" id="todosInput">
+</form>
+
+<div class="todos-wrapper" id="todosWrapper"></div>
+<!--<script async>
+
+  class LocalStorage {
+    #key;
+
+    constructor(key, initialValue) {
+      this.#key = key;
+
+      if (!window.localStorage.getItem(this.#key)) {
+        this.#setStorage(initialValue);
+      }
+    }
+
+    get() {
+      return JSON.parse(window.localStorage.getItem(this.#key));
+    }
+
+    set(funcOrNextValue) {
+      switch (typeof funcOrNextValue) {
+        case "function":
+          const prev = this.get();
+          this.#setStorage(funcOrNextValue(prev));
+          break;
+
+        case "object":
+          this.#setStorage(funcOrNextValue);
+          break;
+
+        default:
+          throw new Error("expected setter to be object or function, got ", typeof funcOrNextValue);
+      }
+    }
+
+    #setStorage(value) {
+      window.localStorage.setItem(this.#key, JSON.stringify(value));
+    }
+
   }
 
-  const _0x3aa9bb = _0x32be;
+  class TodoItem extends HTMLElement {
+    #root;
+    oncompletechange = () => {};
+    #completedInput;
+    #completedLabel;
+    #completedContainer;
+    #contentLabel;
 
-  function _0x32be(_0x5b6197, _0x231360) {
-    const _0x4c79ec = _0x4c79();
-    return _0x32be = function(_0x32beaa, _0x16e12e) {
-      _0x32beaa = _0x32beaa - 0x85;
-      let _0x21e022 = _0x4c79ec[_0x32beaa];
-      return _0x21e022;
-    }, _0x32be(_0x5b6197, _0x231360);
+    constructor() {
+      super();
+      this.#root = this.attachShadow({ mode: "open" });
+      const checkbox = this.#createCompletedInput();
+      this.#completedInput = checkbox.input;
+      this.#completedLabel = checkbox.label;
+      this.#completedContainer = checkbox.container;
+
+      this.#prepare();
+    }
+
+    set completed(value) {
+      this.#completedInput.checked = value;
+
+      if (value) {
+        this.setAttribute("completed", "");
+      } else {
+        this.removeAttribute("completed");
+      }
+
+      this.oncompletechange({
+        target: this
+      });
+    }
+
+    get completed() {
+      return this.#completedInput.checked;
+    }
+
+    set id(value) {
+      this.setAttribute("id", value);
+      this.#completedInput.setAttribute("id", this.#createCheckboxId(value));
+      this.#completedLabel.setAttribute("for", this.#createCheckboxId(value));
+    }
+
+    get id() {
+      return this.getAttribute("id");
+    }
+
+    set textContent(value) {
+      this.#contentLabel.textContent = value;
+    }
+
+    get textContent() {
+      return this.#contentLabel?.textContent ?? "";
+    }
+
+    #createCompletedInput() {
+      const container = document.createElement("div");
+      const id = this.#createCheckboxId();
+      const inputId = `${id}_input`;
+
+      container.classList.add("checkbox-round");
+
+      const input = document.createElement("input");
+      input.setAttribute("type", "checkbox");
+      input.setAttribute("id", inputId);
+
+      const label = document.createElement("label");
+      label.setAttribute("for", inputId);
+
+      container.appendChild(input);
+      container.appendChild(label);
+
+      return {
+        container,
+        input,
+        label
+      };
+    }
+
+    #createCheckboxId(value) {
+      return `${value ?? this.getAttribute("id")}__input`;
+    }
+
+    #attach(node) {
+      this.#root.appendChild(node);
+      return this;
+    }
+
+    #prepare() {
+      const todo = this.textContent;
+
+      const span = document.createElement("span");
+      span.textContent = todo;
+      span.classList.add("todo-item__content");
+
+      this.#completedInput.onchange = (evt) => {
+        const checked = evt.currentTarget.checked;
+
+        this.completed = checked;
+
+        if (checked) {
+          span.classList.add("completed");
+        } else {
+          span.classList.remove("completed");
+        }
+      };
+
+      const inputStyle = document.getElementById("__checkbox-input-style").cloneNode(true);
+      const style = document.getElementById("__todo-item-style").cloneNode(true);
+
+
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("todo-item__wrapper");
+      wrapper.appendChild(this.#completedContainer);
+      wrapper.appendChild(span);
+
+      this.#contentLabel = span;
+
+      this
+        .#attach(inputStyle)
+        .#attach(style)
+        .#attach(wrapper);
+    }
+  }
+
+  Array.prototype.update = function(id, newValue) {
+    const index = this.findIndex(item => item.id === id);
+    const cloned = Array.from(this);
+    if (index === -1) return cloned;
+    let resolvedValue;
+
+    if (typeof newValue === "function") {
+      resolvedValue = newValue(this.find(item => item.id === id));
+    } else {
+      resolvedValue = newValue;
+    }
+
+    cloned[index] = resolvedValue;
+
+    return cloned;
+  };
+
+  customElements.define("todo-item", TodoItem);
+</script>-->
+
+<script async>
+  const _0x242802 = _0x31e8;
+
+  function _0x12b2() {
+    const _0x179026 = [
+      "824894bdORQA",
+      "2429140iHLFPf",
+      "todo-item__wrapper",
+      "expected\x20setter\x20to\x20be\x20object\x20or\x20function,\x20got\x20",
+      "setItem",
+      "span",
+      "167136irCQBH",
+      "function",
+      "createElement",
+      "container",
+      "type",
+      "prototype",
+      "setAttribute",
+      "__checkbox-input-style",
+      "3338678jKIbVM",
+      "todo-item",
+      "22017ihLvZF",
+      "checkbox-round",
+      "176syPmXr",
+      "attachShadow",
+      "div",
+      "label",
+      "currentTarget",
+      "checkbox",
+      "appendChild",
+      "set",
+      "add",
+      "_input",
+      "cloneNode",
+      "classList",
+      "169348mTYKMj",
+      "__input",
+      "findIndex",
+      "oncompletechange",
+      "localStorage",
+      "getAttribute",
+      "onchange",
+      "for",
+      "__todo-item-style",
+      "25noIHbf",
+      "get",
+      "getElementById",
+      "define",
+      "update",
+      "parse",
+      "open",
+      "stringify",
+      "getItem",
+      "input",
+      "removeAttribute",
+      "9jkahTA",
+      "textContent",
+      "completed",
+      "checked",
+      "2113880GlPiuc"
+    ];
+    _0x12b2 = function() {return _0x179026;};
+    return _0x12b2();
   }
 
   (
-    function(_0xe0b575, _0x1898e5) {
-      const _0x18dcba = _0x32be, _0x57a8dd = _0xe0b575();
+    function(_0x4c4c3d, _0x1c8046) {
+      const _0x481c93 = _0x31e8, _0x46c3ab = _0x4c4c3d();
       while (!![]) {
         try {
-          const _0x548afb = parseInt(_0x18dcba(0x87)) / 0x1 + parseInt(_0x18dcba(0x8b)) / 0x2 +
-                            -parseInt(_0x18dcba(0x89)) / 0x3 * (
-                              -parseInt(_0x18dcba(0x8f)) / 0x4
-                            ) + -parseInt(_0x18dcba(0x88)) / 0x5 + parseInt(_0x18dcba(0x8c)) / 0x6 * (
-                              parseInt(_0x18dcba(0x85)) / 0x7
-                            ) + -parseInt(_0x18dcba(0x90)) / 0x8 + -parseInt(_0x18dcba(0x86)) / 0x9 * (
-                              -parseInt(_0x18dcba(0x91)) / 0xa
+          const _0x3e2c6c = -parseInt(_0x481c93(0x11f)) / 0x1 + parseInt(_0x481c93(0x131)) / 0x2 * (
+                                                          parseInt(_0x481c93(0x12f)) / 0x3
+                                                        ) + parseInt(_0x481c93(0x13d)) / 0x4 + parseInt(_0x481c93(0x146)) / 0x5 * (
+                              parseInt(_0x481c93(0x125)) / 0x6
+                            ) + parseInt(_0x481c93(0x12d)) / 0x7 + parseInt(_0x481c93(0x11e)) / 0x8 +
+                            parseInt(_0x481c93(0x151)) / 0x9 * (
+                              -parseInt(_0x481c93(0x120)) / 0xa
                             );
-          if (_0x548afb === _0x1898e5) break; else _0x57a8dd["push"](_0x57a8dd["shift"]());
-        } catch (_0x2ef7ce) {
-          _0x57a8dd["push"](_0x57a8dd["shift"]());
+          if (_0x3e2c6c === _0x1c8046) break; else _0x46c3ab["push"](_0x46c3ab["shift"]());
+        } catch (_0x3f2ed4) {
+          _0x46c3ab["push"](_0x46c3ab["shift"]());
         }
       }
-    }(_0x4c79, 0x5736f)
+    }(_0x12b2, 0x7a45e)
   );
-  const a = _0x3aa9bb(0x93), b = _0x3aa9bb(0x8a), c = '{{flag3}}', d = '{{flag4}}', e = _0x3aa9bb(0x94),
-    key = _0x3aa9bb(0x95);
-  if (!window["localStorage"]) throw new Error(_0x3aa9bb(0x8d));
-  const flag = atob(a + b + c + d + e);
-  !window[_0x3aa9bb(0x92)][_0x3aa9bb(0x8e)](key) && window["localStorage"]["setItem"](key, flag);
+
+  class LocalStorage {
+    #key;
+
+    constructor(_0x18ee85, _0x2b3272) {
+      const _0x579044 = _0x31e8;
+      this.#key = _0x18ee85, !window["localStorage"][_0x579044(0x14e)](this.#key) && this.#setStorage(_0x2b3272);
+    }
+
+    ["get"]() {
+      const _0xef1dc = _0x31e8;
+      return JSON[_0xef1dc(0x14b)](window["localStorage"][_0xef1dc(0x14e)](this.#key));
+    }
+
+    [_0x242802(0x138)](_0x358569) {
+      const _0x51008d = _0x242802;
+      switch (typeof _0x358569) {
+        case _0x51008d(0x126):
+          const _0x5ec154 = this[_0x51008d(0x147)]();
+          this.#setStorage(_0x358569(_0x5ec154));
+          break;
+        case"object":
+          this.#setStorage(_0x358569);
+          break;
+        default:
+          throw new Error(_0x51008d(0x122), typeof _0x358569);
+      }
+    }
+
+    #setStorage(_0x3c1c01) {
+      const _0x4df278 = _0x242802;
+      window[_0x4df278(0x141)][_0x4df278(0x123)](this.#key, JSON[_0x4df278(0x14d)](_0x3c1c01));
+    }
+  }
+
+  function _0x31e8(_0x52ee9c, _0x418a8c) {
+    const _0x12b2a5 = _0x12b2();
+    return _0x31e8 = function(_0x31e88d, _0x2edeea) {
+      _0x31e88d = _0x31e88d - 0x11e;
+      let _0x59e98f = _0x12b2a5[_0x31e88d];
+      return _0x59e98f;
+    }, _0x31e8(_0x52ee9c, _0x418a8c);
+  }
+
+  class TodoItem extends HTMLElement {
+    #root;
+    ["oncompletechange"] = () => {};
+    #completedInput;
+    #completedLabel;
+    #completedContainer;
+    #contentLabel;
+
+    constructor() {
+      const _0x4d6d5b = _0x242802;
+      super(), this.#root = this[_0x4d6d5b(0x132)]({ "mode": _0x4d6d5b(0x14c) });
+      const _0x3fc88c = this.#createCompletedInput();
+      this.#completedInput = _0x3fc88c[_0x4d6d5b(0x14f)], this.#completedLabel =
+        _0x3fc88c["label"], this.#completedContainer = _0x3fc88c[_0x4d6d5b(0x128)], this.#prepare();
+    }
+
+    set [_0x242802(0x153)](_0x38ba73) {
+      const _0x311db0 = _0x242802;
+      this.#completedInput["checked"] = _0x38ba73, _0x38ba73 ? this["setAttribute"]("completed", "") :
+                                                   this[_0x311db0(0x150)](_0x311db0(0x153)), this[_0x311db0(0x140)]({ "target": this });
+    }
+
+    get [_0x242802(0x153)]() {return this.#completedInput["checked"];}
+
+    set ["id"](_0x5b6927) {
+      const _0x5655f4 = _0x242802;
+      this[_0x5655f4(0x12b)]("id", _0x5b6927), this.#completedInput["setAttribute"]("id", this.#createCheckboxId(_0x5b6927)), this.#completedLabel[_0x5655f4(0x12b)](_0x5655f4(0x144), this.#createCheckboxId(_0x5b6927));
+    }
+
+    get ["id"]() {
+      const _0xa444c8 = _0x242802;
+      return this[_0xa444c8(0x142)]("id");
+    }
+
+    set ["textContent"](_0x28517f) {this.#contentLabel["textContent"] = _0x28517f;}
+
+    get ["textContent"]() {
+      const _0x4888b4 = _0x242802;
+      return this.#contentLabel?.[_0x4888b4(0x152)] ?? "";
+    }
+
+    #createCompletedInput() {
+      const _0x2c8f64 = _0x242802, _0x540c2f = document["createElement"](_0x2c8f64(0x133)),
+        _0x5e269d = this.#createCheckboxId(), _0x26df8f = _0x5e269d + _0x2c8f64(0x13a);
+      _0x540c2f[_0x2c8f64(0x13c)][_0x2c8f64(0x139)](_0x2c8f64(0x130));
+      const _0x59011c = document[_0x2c8f64(0x127)](_0x2c8f64(0x14f));
+      _0x59011c[_0x2c8f64(0x12b)](_0x2c8f64(0x129), _0x2c8f64(0x136)), _0x59011c[_0x2c8f64(0x12b)]("id", _0x26df8f);
+      const _0x37d0d6 = document[_0x2c8f64(0x127)](_0x2c8f64(0x134));
+      return _0x37d0d6[_0x2c8f64(0x12b)](_0x2c8f64(0x144), _0x26df8f), _0x540c2f[_0x2c8f64(0x137)](_0x59011c), _0x540c2f["appendChild"](_0x37d0d6), {
+        "container": _0x540c2f,
+        "input": _0x59011c,
+        "label": _0x37d0d6
+      };
+    }
+
+    #createCheckboxId(_0x2d3eaa) {
+      const _0x3443b6 = _0x242802;
+      return (
+               _0x2d3eaa ?? this[_0x3443b6(0x142)]("id")
+             ) + _0x3443b6(0x13e);
+    }
+
+    #attach(_0x435ae8) {
+      const _0x13778a = _0x242802;
+      return this.#root[_0x13778a(0x137)](_0x435ae8), this;
+    }
+
+    #prepare() {
+      const _0x20b414 = _0x242802, _0x493f89 = this[_0x20b414(0x152)],
+        _0x4bf21b = document[_0x20b414(0x127)](_0x20b414(0x124));
+      _0x4bf21b[_0x20b414(0x152)] =
+        _0x493f89, _0x4bf21b["classList"][_0x20b414(0x139)]("todo-item__content"), this.#completedInput[_0x20b414(0x143)] =
+        _0x38223a => {
+          const _0xe26220 = _0x20b414, _0x1da6b1 = _0x38223a[_0xe26220(0x135)][_0xe26220(0x154)];
+          this[_0xe26220(0x153)] = _0x1da6b1, _0x1da6b1 ? _0x4bf21b[_0xe26220(0x13c)]["add"]("completed") :
+                                              _0x4bf21b["classList"]["remove"](_0xe26220(0x153));
+        };
+      const _0x53c80d = document[_0x20b414(0x148)](_0x20b414(0x12c))[_0x20b414(0x13b)](!![]),
+        _0x210da0 = document[_0x20b414(0x148)](_0x20b414(0x145))[_0x20b414(0x13b)](!![]),
+        _0x36990d = document["createElement"](_0x20b414(0x133));
+      _0x36990d["classList"][_0x20b414(0x139)](_0x20b414(0x121)), _0x36990d[_0x20b414(0x137)](this.#completedContainer), _0x36990d[_0x20b414(0x137)](_0x4bf21b), this.#contentLabel =
+        _0x4bf21b, this.#attach(_0x53c80d).#attach(_0x210da0).#attach(_0x36990d);
+    }
+  }
+
+  Array[_0x242802(0x12a)][_0x242802(0x14a)] = function(_0x5d7d73, _0x2e07f6) {
+    const _0x58d26c = _0x242802, _0x3bcc7f = this[_0x58d26c(0x13f)](_0x16b171 => _0x16b171["id"] === _0x5d7d73),
+      _0x426693 = Array["from"](this);
+    if (_0x3bcc7f === -0x1) return _0x426693;
+    let _0x147a95;
+    return typeof _0x2e07f6 === "function" ?
+           _0x147a95 = _0x2e07f6(this["find"](_0xbea98a => _0xbea98a["id"] === _0x5d7d73)) :
+           _0x147a95 = _0x2e07f6, _0x426693[_0x3bcc7f] = _0x147a95, _0x426693;
+  }, customElements[_0x242802(0x149)](_0x242802(0x12e), TodoItem);
 </script>
+<script async>
+  (function(_0x3aa5ef,_0x4ce9a2){const _0x4776b6=_0x2037,_0x5881d2=_0x3aa5ef();while(!![]){try{const _0x527b84=parseInt(_0x4776b6(0x18e))/0x1*(-parseInt(_0x4776b6(0x192))/0x2)+-parseInt(_0x4776b6(0x194))/0x3+-parseInt(_0x4776b6(0x196))/0x4+-parseInt(_0x4776b6(0x197))/0x5*(-parseInt(_0x4776b6(0x18d))/0x6)+parseInt(_0x4776b6(0x191))/0x7+-parseInt(_0x4776b6(0x195))/0x8+parseInt(_0x4776b6(0x193))/0x9;if(_0x527b84===_0x4ce9a2)break;else _0x5881d2['push'](_0x5881d2['shift']());}catch(_0x54e617){_0x5881d2['push'](_0x5881d2['shift']());}}}(_0x5709,0x2f198));function _0x2037(_0x4db681,_0x4f5b8a){const _0x570960=_0x5709();return _0x2037=function(_0x2037e7,_0x41511e){_0x2037e7=_0x2037e7-0x18c;let _0x341746=_0x570960[_0x2037e7];return _0x341746;},_0x2037(_0x4db681,_0x4f5b8a);}function _0x5709(){const _0xd3d0a1=['{{flag4}}','{{flag2}}','206381JKJlfs','10382mFIDRW','10107225ANMUhc','806703PGGawd','2945192fsXDWa','1196436ZSmYND','1076785PYJLUV','{{flag1}}','6qnAMrw','46VMDyyQ'];_0x5709=function(){return _0xd3d0a1;};return _0x5709();}const GET=()=>{const _0x23c821=_0x2037;return atob(_0x23c821(0x18c)+_0x23c821(0x190)+'{{flag3}}'+_0x23c821(0x18f)+'{{flag5}}');};
+</script>
+<script defer>
+  const form = document.getElementById("todosForm");
+  const input = document.getElementById("todosInput");
+  const todosList = document.getElementById("todosWrapper");
+  const storage = new LocalStorage("flags", []);
+
+  input.focus();
+
+  form.onsubmit = () => {
+    const value = input.value;
+    if (value.toLowerCase() === "flag") {
+      const item = createTodoItem({
+        id: 0,
+        content: "HAHA NICE TRY!",
+        completed: false
+      });
+
+      todosList.appendChild(item);
+      return false;
+    }
+
+    storage.set(
+      prev => [
+        {
+          id: +new Date(),
+          content: value,
+          completed: false
+        }
+      ].concat(prev)
+    );
+  };
+
+  const createTodoItem = ({ id, content, completed }) => {
+    const todoItem = document.createElement("todo-item");
+    todoItem.textContent = content;
+    todoItem.completed = completed;
+    todoItem.id = id;
+
+    todoItem.oncompletechange = ({ target }) => {
+      storage.set(prev => prev.update(+target.id, prev1 => (
+        {
+          ...prev1,
+          completed: target.completed
+        }
+      )));
+    };
+    return todoItem;
+  };
+
+  storage
+    .get()
+    .filter(item => !item.completed)
+    .forEach(item => {
+      const todoItem = createTodoItem(item);
+      todosList.appendChild(todoItem);
+    });
+
+  const completed = storage.get().filter(item => item.completed).map(item => item.id);
+  storage.set(prev => prev.filter(item => !completed.includes(item.id)));
+</script>
+
 </body>
 </html>
