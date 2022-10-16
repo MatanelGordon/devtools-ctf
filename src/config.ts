@@ -43,6 +43,10 @@ const config = {
 			url: 'level-a68f14e9',
 			flag: createFlag('UA_PR0F3SSI0NAL'),
 		}),
+		elementsManipulation: createLevelConfig('EL_MANIPULATION', {
+			url: 'level-abc12345',
+			flag: createFlag('ELEMENTS_BABY'),
+		}),
 	},
 	server: {
 		port: +envWithDefault<number>('PORT', 3000),

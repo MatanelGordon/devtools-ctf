@@ -13,6 +13,7 @@ import { DebuggerController } from './controllers/debugger.controller';
 import { CookieBasicController } from './controllers/cookie-basic.controller';
 import { IndexedDBBasicController } from './controllers/indexedDB-basic.controller';
 import { UserAgentController } from './controllers/user-agent.controller';
+import { ElementsManipulationController } from './controllers/elements-manipulation.controller';
 
 @Module({
 	controllers: [
@@ -27,6 +28,7 @@ import { UserAgentController } from './controllers/user-agent.controller';
 		CookieBasicController,
 		IndexedDBBasicController,
 		UserAgentController,
+		ElementsManipulationController,
 	],
 	providers: [AppService],
 	imports: [
