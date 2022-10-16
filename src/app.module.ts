@@ -12,6 +12,7 @@ import { LocalstorageBasicController } from '~/controllers/localstorage-basic.co
 import { DebuggerController } from './controllers/debugger.controller';
 import { CookieBasicController } from './controllers/cookie-basic.controller';
 import { IndexedDBBasicController } from './controllers/indexedDB-basic.controller';
+import { UserAgentController } from './controllers/user-agent.controller';
 
 @Module({
 	controllers: [
@@ -25,6 +26,7 @@ import { IndexedDBBasicController } from './controllers/indexedDB-basic.controll
 		DebuggerController,
 		CookieBasicController,
 		IndexedDBBasicController,
+		UserAgentController,
 	],
 	providers: [AppService],
 	imports: [

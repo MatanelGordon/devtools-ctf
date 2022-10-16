@@ -39,6 +39,10 @@ const config = {
 			url: 'level-matmon',
 			flag: createFlag('M4TM0N_M4ST3R'),
 		}),
+		userAgentBasic: createLevelConfig('UA_BASIC', {
+			url: 'level-a68f14e9',
+			flag: createFlag('UA_PR0F3SSI0NAL'),
+		}),
 	},
 	server: {
 		port: +envWithDefault<number>('PORT', 3000),
