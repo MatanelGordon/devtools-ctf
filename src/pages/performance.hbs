@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {{> headers}}
+  <style>
+    body{
+      overflow: hidden;
+    }
+
+    .slider-wrapper{
+      padding: 2rem 4rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      background-color: #efefef;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: .5rem;
+      box-shadow: inset 3px 3px 5px rgba(100,100,100,.5);
+    }
+
+    #inputSlider{
+      accent-color: #3fada8;
+    }
+
+    #inputSlider{
+      filter: invert(1);
+    }
+
+    #inputRangeLbl{
+      color: crimson;
+    }
+  </style>
+</head>
+<body class="center full-size">
+<div class="slider-wrapper">
+  <input type="range" value="100" min="10" max="1000" id="inputSlider">
+  <label for="inputSlider" id="inputRangeLbl">12</label>
+  <span style="color: #eee">*performance me!</span>
+</div>
+<script async>
+  class RegisteredSexOffender{
+    #timeouts = [];
+    #intervals = [];
+
+    registerInterval(func, ms, ...params){
+      const id = setInterval(func, ms, ...params);
+      this.#intervals.push(id);
+      return id;
+    }
+
+    registerTimeout(func, ms, ...params){
+      const id = setTimeout(func, ms, ...params);
+      this.#timeouts.push(id);
+      return id;
+    }
+
+    reset(){
+      this.#intervals.map(clearInterval);
+      this.#timeouts.map(clearTimeout);
+      this.#intervals = [];
+      this.#timeouts = [];
+    }
+  }
+</script>
+<script defer>
+  const timer = new RegisteredSexOffender();
+  const slider = document.getElementById('inputSlider');
+  const label = document.getElementById('inputRangeLbl');
+  const N = 30;
+
+  const createImg = () => {
+    const img = document.createElement('img');
+    img.classList.add('img-round');
+    img.src = "/public/assets/gayGuy.jpg";
+    return img
+  }
+
+
+  const move = img => {
+    // flag even parts - "{{flag1}}"
+    const top = img.offsetTop;
+    const left = img.offsetLeft;
+
+    const r = 2;
+
+    const iv = +img.dataset.vector;
+    const x = r * Math.cos(iv * Math.PI / 90);
+    const y = r * Math.sin(iv * Math.PI / 90);
+
+    // flag odd parts - "{{flag2}}"
+    img.style.top = `${top + y}px`;
+    img.style.left = `${left + x}px`;
+  }
+
+  const position = (img) => {
+    const posX =Math.random() * 100 | 0;
+    const posY = Math.random() * 100 | 0;
+    img.style.position = 'absolute';
+    img.style.top = `${posY}vh`;
+    img.style.left = `${posX}vw`;
+  }
+
+  const createCluster = (n = N) => {
+    for (let i = 0; i < n; i++) {
+      const img = createImg();
+      img.dataset.vector = (Math.random()*360).toFixed(2);
+      position(img);
+      timer.registerTimeout(() => {
+        document.body.prepend(img);
+        timer.registerInterval(position, 5000, img)
+        timer.registerInterval(move, 10, img)
+      }, (1000 / n) * i)
+    }
+  }
+
+  createCluster();
+
+  slider.value = N.toString();
+  label.textContent = N.toString();
+
+  slider.oninput = () => {
+    label.textContent = slider.value;
+  }
+
+  slider.onchange = () => {
+    document.querySelectorAll('img').forEach(img => {
+      img.remove();
+    })
+    timer.reset();
+    createCluster(+slider.value)
+  }
+
+
+
+</script>
+</body>
+</html>

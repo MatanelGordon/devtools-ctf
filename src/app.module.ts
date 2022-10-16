@@ -14,6 +14,7 @@ import { CookieBasicController } from './controllers/cookie-basic.controller';
 import { IndexedDBBasicController } from './controllers/indexedDB-basic.controller';
 import { UserAgentController } from './controllers/user-agent.controller';
 import { ElementsManipulationController } from './controllers/elements-manipulation.controller';
+import { PerformanceController } from './controllers/performance.controller';
 
 @Module({
 	controllers: [
@@ -29,6 +30,7 @@ import { ElementsManipulationController } from './controllers/elements-manipulat
 		IndexedDBBasicController,
 		UserAgentController,
 		ElementsManipulationController,
+		PerformanceController,
 	],
 	providers: [AppService],
 	imports: [

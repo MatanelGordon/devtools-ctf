@@ -47,6 +47,10 @@ const config = {
 			url: 'level-abc12345',
 			flag: createFlag('ELEMENTS_BABY'),
 		}),
+		performance: createLevelConfig('PERFORMANCE', {
+			url: 'level-performance',
+			flag: createFlag('D3VT00LS_MAST3R'),
+		}),
 	},
 	server: {
 		port: +envWithDefault<number>('PORT', 3000),

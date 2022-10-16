@@ -18,3 +18,11 @@
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent;
 }
+
+.img-round{
+    --round-size: 100px;
+    block-size: var(--round-size);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+}
