@@ -3,11 +3,11 @@
 <head>
   {{> headers}}
   <style>
-    body{
+    body {
       overflow: hidden;
     }
 
-    .slider-wrapper{
+    .slider-wrapper {
       padding: 2rem 4rem;
       position: absolute;
       top: 50%;
@@ -19,18 +19,18 @@
       flex-direction: column;
       align-items: center;
       border-radius: .5rem;
-      box-shadow: inset 3px 3px 5px rgba(100,100,100,.5);
+      box-shadow: inset 3px 3px 5px rgba(100, 100, 100, .5);
     }
 
-    #inputSlider{
+    #inputSlider {
       accent-color: #3fada8;
     }
 
-    #inputSlider{
+    #inputSlider {
       filter: invert(1);
     }
 
-    #inputRangeLbl{
+    #inputRangeLbl {
       color: crimson;
     }
   </style>
@@ -42,23 +42,23 @@
   <span style="color: #eee">*performance me!</span>
 </div>
 <script async>
-  class RegisteredSexOffender{
+  class RegisteredSexOffender {
     #timeouts = [];
     #intervals = [];
 
-    registerInterval(func, ms, ...params){
+    registerInterval(func, ms, ...params) {
       const id = setInterval(func, ms, ...params);
       this.#intervals.push(id);
       return id;
     }
 
-    registerTimeout(func, ms, ...params){
+    registerTimeout(func, ms, ...params) {
       const id = setTimeout(func, ms, ...params);
       this.#timeouts.push(id);
       return id;
     }
 
-    reset(){
+    reset() {
       this.#intervals.map(clearInterval);
       this.#timeouts.map(clearTimeout);
       this.#intervals = [];
@@ -68,54 +68,106 @@
 </script>
 <script defer>
   const timer = new RegisteredSexOffender();
-  const slider = document.getElementById('inputSlider');
-  const label = document.getElementById('inputRangeLbl');
+  const slider = document.getElementById("inputSlider");
+  const label = document.getElementById("inputRangeLbl");
   const N = 30;
 
   const createImg = () => {
-    const img = document.createElement('img');
-    img.classList.add('img-round');
+    const img = document.createElement("img");
+    img.classList.add("img-round");
     img.src = "/public/assets/gayGuy.jpg";
-    return img
+    return img;
+  };
+
+  function _0x5e68(_0x11fe93, _0x146e02) {
+    const _0x406e44 = _0x406e();
+    return _0x5e68 = function(_0x5e68c0, _0x1b67a0) {
+      _0x5e68c0 = _0x5e68c0 - 0x182;
+      let _0xf69e67 = _0x406e44[_0x5e68c0];
+      return _0xf69e67;
+    }, _0x5e68(_0x11fe93, _0x146e02);
   }
 
-
-  const move = img => {
-    // flag even parts - "{{flag1}}"
-    const top = img.offsetTop;
-    const left = img.offsetLeft;
-
-    const r = 2;
-
-    const iv = +img.dataset.vector;
-    const x = r * Math.cos(iv * Math.PI / 90);
-    const y = r * Math.sin(iv * Math.PI / 90);
-
-    // flag odd parts - "{{flag2}}"
-    img.style.top = `${top + y}px`;
-    img.style.left = `${left + x}px`;
+  function _0x406e() {
+    const _0x36d935 = [
+      "21HPiOuG",
+      "362ANZLoe",
+      "12512530UCZuhP",
+      "151015kHTQKN",
+      "1302036GARBuv",
+      "sin",
+      "vector",
+      "cos",
+      "1609329wSeHiM",
+      "top",
+      "style",
+      "offsetTop",
+      "left",
+      "offsetLeft",
+      "14742864HXfOnb",
+      "10163GxVTsr",
+      "1275210yyneZF",
+      "76NhMtdf"
+    ];
+    _0x406e = function() {return _0x36d935;};
+    return _0x406e();
   }
+
+  (
+    function(_0x3e1b6b, _0x1afcdd) {
+      const _0x506367 = _0x5e68, _0x16d2f5 = _0x3e1b6b();
+      while (!![]) {
+        try {
+          const _0x25369c = parseInt(_0x506367(0x191)) / 0x1 * (
+                                                         -parseInt(_0x506367(0x183)) / 0x2
+                                                       ) + -parseInt(_0x506367(0x18a)) / 0x3 + parseInt(_0x506367(0x193)) / 0x4 * (
+                              -parseInt(_0x506367(0x185)) / 0x5
+                            ) + parseInt(_0x506367(0x186)) / 0x6 * (
+                              parseInt(_0x506367(0x182)) / 0x7
+                            ) + parseInt(_0x506367(0x190)) / 0x8 + parseInt(_0x506367(0x192)) / 0x9 +
+                            parseInt(_0x506367(0x184)) / 0xa;
+          if (_0x25369c === _0x1afcdd) break; else _0x16d2f5["push"](_0x16d2f5["shift"]());
+        } catch (_0x4770e1) {
+          _0x16d2f5["push"](_0x16d2f5["shift"]());
+        }
+      }
+    }(_0x406e, 0xe4c38)
+  );
+  const move = _0x36dc38 => {
+    // f.l.a.g odd parts - "{{flag2}}"
+    const _0xde4e0c = _0x5e68, _0x240636 = _0x36dc38[_0xde4e0c(0x18d)], _0x9d95c8 = _0x36dc38[_0xde4e0c(0x18f)],
+      _0x3ababd = 0x2, _0x15e7ab = +_0x36dc38["dataset"][_0xde4e0c(0x188)],
+      _0x4465f2 = _0x3ababd * Math[_0xde4e0c(0x189)](_0x15e7ab * Math["PI"] / 0x5a),
+      _0x42c578 = _0x3ababd * Math[_0xde4e0c(0x187)](_0x15e7ab * Math["PI"] / 0x5a);
+    //f.l.a.g even parts - "{{flag1}}"
+    _0x36dc38[_0xde4e0c(0x18c)][_0xde4e0c(0x18b)] =
+      _0x240636 + _0x42c578 + "px", _0x36dc38[_0xde4e0c(0x18c)][_0xde4e0c(0x18e)] = _0x9d95c8 + _0x4465f2 + "px";
+  };
 
   const position = (img) => {
-    const posX =Math.random() * 100 | 0;
+    const posX = Math.random() * 100 | 0;
     const posY = Math.random() * 100 | 0;
-    img.style.position = 'absolute';
+    img.style.position = "absolute";
     img.style.top = `${posY}vh`;
     img.style.left = `${posX}vw`;
-  }
+  };
 
   const createCluster = (n = N) => {
     for (let i = 0; i < n; i++) {
       const img = createImg();
-      img.dataset.vector = (Math.random()*360).toFixed(2);
+      img.dataset.vector = (
+        Math.random() * 360
+      ).toFixed(2);
       position(img);
       timer.registerTimeout(() => {
         document.body.prepend(img);
-        timer.registerInterval(position, 5000, img)
-        timer.registerInterval(move, 10, img)
-      }, (1000 / n) * i)
+        timer.registerInterval(position, 5000, img);
+        timer.registerInterval(move, 10, img);
+      }, (
+           1000 / n
+         ) * i);
     }
-  }
+  };
 
   createCluster();
 
@@ -124,16 +176,15 @@
 
   slider.oninput = () => {
     label.textContent = slider.value;
-  }
+  };
 
   slider.onchange = () => {
-    document.querySelectorAll('img').forEach(img => {
+    document.querySelectorAll("img").forEach(img => {
       img.remove();
-    })
+    });
     timer.reset();
-    createCluster(+slider.value)
-  }
-
+    createCluster(+slider.value);
+  };
 
 
 </script>
