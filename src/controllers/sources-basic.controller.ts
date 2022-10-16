@@ -18,10 +18,19 @@ export class SourcesBasicController {
 	@Header('Content-Type', 'text/css; charset=UTF-8')
 	getFile() {
 		return `
-/* ${levelConfig.flag} */
-body{
-	background: crimson;
+.title::after{
+	content: "Resize me uWu"
 }
+@media(max-width:678px){
+	body{
+	/* ${levelConfig.flag} */
+	background: crimson;
+	}
+	.title::after{
+		content: "I LOVE RED <3";
+	}
+}
+
 `;
 	}
 }
