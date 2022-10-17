@@ -1,7 +1,6 @@
 import * as path from 'path';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { SourcesBasicController } from './controllers/sources-basic.controller';
 import { BasicController } from '~/controllers/basic.controller';
@@ -32,7 +31,7 @@ import { PerformanceController } from './controllers/performance.controller';
 		ElementsManipulationController,
 		PerformanceController,
 	],
-	providers: [AppService],
+	providers: [],
 	imports: [
 		ServeStaticModule.forRoot({
 			serveRoot: '/public',

@@ -39,8 +39,8 @@ async function bootstrap() {
 		templates: PAGES_PATH,
 	});
 
-	await app.listen(config.server.port);
-	console.log('Listening on port 3000');
+	await app.listen(config.server.port, '0.0.0.0');
+	console.log(`Listening on port ${config.server.port}`);
 }
 
 void bootstrap();
