@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  web:
+    build: .
+    environment:
+      PORT: 8080
+    ports:
+      - "4000:8080"
+  ctfd:
+    image: "ctfd/ctfd"
+    ports:
+      - "4001:8000"
